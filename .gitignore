@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 
 Input_data
+db
+bm25_index.pkl 
