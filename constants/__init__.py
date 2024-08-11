@@ -17,12 +17,9 @@ prompt = ChatPromptTemplate.from_template(template)
 chunk_size = 1000
 chunk_overlap = 100
 top_k = 2
-# csv_file_path = 'Input_data/filtered_data.csv'
+csv_file_path = 'Input_data/filtered_data.csv'
 persist_directory = 'db'
 bm25_file_path = 'bm25_index.pkl'
-
-# Get the absolute path to the project root
-PROJECT_ROOT = Path(__file__).parent.parent.absolute()
-
-# Define the CSV file path relative to the project root
-csv_file_path = PROJECT_ROOT / "Input_data" / "test_data.csv"
+model_directory = "./artifacts/embedding_model"
+save_directory = "./artifacts/embedding_model"
+model_name="all-minilm-l6-v2"

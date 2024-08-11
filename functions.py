@@ -4,6 +4,9 @@ from langchain_community.vectorstores import Chroma
 from langchain_text_splitters import (
     RecursiveCharacterTextSplitter,
 )
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from sentence_transformers import SentenceTransformer
+from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain_community.llms import HuggingFaceEndpoint
 from langchain_community.retrievers import BM25Retriever
 from langchain.schema.runnable import RunnablePassthrough
@@ -64,3 +67,25 @@ def save_bm25_index(bm25_retriever, file_path):
 def load_bm25_index(file_path):
     with open(file_path, 'rb') as f:
         return pickle.load(f)
+    
+
+def download_and_save_model(model_name, save_directory):
+    # Ensure the save directory exists
+    os.makedirs(save_directory, exist_ok=True)
+    
+    # Download and save the model
+    model = SentenceTransformer(model_name)
+    model.save(save_directory)
+    print(f"Model {model_name} downloaded and saved to {save_directory}")
+
+
+def load_local_embedding_model(model_directory):
+    model_kwargs = {'device': 'cpu'}
+    encode_kwargs = {'normalize_embeddings': False}
+    
+    embeddings = HuggingFaceEmbeddings(
+        model_name=model_directory,
+        model_kwargs=model_kwargs,
+        encode_kwargs=encode_kwargs
+    )
+    return embeddings

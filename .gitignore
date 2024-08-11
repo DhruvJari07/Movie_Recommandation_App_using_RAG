@@ -164,3 +164,4 @@ cython_debug/
 Input_data
 db
 bm25_index.pkl 
+artifacts

@@ -26,8 +26,8 @@ load_dotenv()
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv('HF_TOKEN')
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')
 
-embed_fn = SentenceTransformerEmbeddings(model_name="all-minilm-l6-v2")
+embed_fn = SentenceTransformerEmbeddings(model_name)
+
+download_and_save_model(model_name, save_directory)
 
 create_vector_embeddings(csv_file_path, embed_fn, chunk_overlap, chunk_size, top_k)
-
-
